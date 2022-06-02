@@ -20,7 +20,7 @@ function playRound (player, comp) {
             }
 
     else if (toTitleCase(player) == comp) {
-        return "It's a tie!";
+        return "It's a tie! Play again";
     }
 }
 
@@ -38,6 +38,9 @@ function game () {
 
         else if (result.charAt(4) == "l")
             compScore++;
+
+        else
+            i--;
     }
 
     if (playerScore > compScore)
