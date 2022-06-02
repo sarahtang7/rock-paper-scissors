@@ -24,11 +24,12 @@ function playRound (player, comp) {
     }
 }
 
-function game (player) {
+function game () {
     let playerScore = 0;
     let compScore = 0;
 
     for (let i=1; i<6; i++) {
+        let player = prompt("Enter rock/paper/scissors: ");
         let result = playRound(player, computerPlay());
         console.log(result);
 
@@ -49,4 +50,4 @@ function game (player) {
         return "TIE GAME"
 }
 
-console.log(game("rock"));
+console.log(game());
