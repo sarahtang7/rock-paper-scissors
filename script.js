@@ -11,7 +11,7 @@ function playRound (player, comp) {
     if ((toTitleCase(player) == "Rock" && comp == "Scissors") || 
         (toTitleCase(player) == "Scissors" && comp == "Paper") ||
         (toTitleCase(player) == "Paper" && comp == "Rock")) 
-        return "You Win! " + toTitleCase(player) + " beats " + comp;
+        return "You win! " + toTitleCase(player) + " beats " + comp;
 
     else if ((comp == "Rock" && toTitleCase(player) == "Scissors") || 
             (comp == "Scissors" && toTitleCase(player) == "Paper") ||
@@ -24,4 +24,29 @@ function playRound (player, comp) {
     }
 }
 
-console.log(playRound("paper", computerPlay()));
+function game (player) {
+    let playerScore = 0;
+    let compScore = 0;
+
+    for (let i=1; i<6; i++) {
+        let result = playRound(player, computerPlay());
+        console.log(result);
+
+        if (result.charAt(4) == "w")
+            playerScore++;
+
+        else if (result.charAt(4) == "l")
+            compScore++;
+    }
+
+    if (playerScore > compScore)
+        return "YOU WIN!"
+
+    else if (compScore > playerScore)
+        return "YOU LOSE"
+
+    else if (playerScore == compScore)
+        return "TIE GAME"
+}
+
+console.log(game("rock"));
