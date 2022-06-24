@@ -76,4 +76,7 @@ function announceWinner() {
         final.textContent = "TIE GAME"; 
 
     finalResult.appendChild(final);
+    rockButton.disabled = true;
+    paperButton.disabled = true;
+    sciButton.disabled = true;
 }
