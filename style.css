@@ -1,4 +1,4 @@
-#button-container, #result-container {
+#button-container, #result-container, #final-result {
     display: flex;
     justify-content: center;
     gap: 50px;

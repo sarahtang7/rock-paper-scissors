@@ -2,9 +2,13 @@ const rockButton = document.querySelector('#rockButton');
 const paperButton = document.querySelector('#paperButton');
 const sciButton = document.querySelector('#sciButton');
 const resultContainer = document.querySelector('#result-container');
+const finalResult = document.querySelector('#final-result')
+const allButtons = document.querySelectorAll('button');
 
 const currResult = document.createElement('div');
 currResult.classList.add('currResult');
+const final = document.createElement('div');
+final.classList.add('final');
 
 let result = '';
 let playerScore = 0;
@@ -27,8 +31,6 @@ function computerPlay () {
     let choices = ["Rock", "Paper", "Scissors"];
     return choices[Math.floor(Math.random()*choices.length)];
 }
-
-
 
 function playRound (player, comp) {
     if ((player == "Rock" && comp == "Scissors") || 
@@ -65,13 +67,13 @@ function changeScore(whoWon) {
 
 function announceWinner() {
     if (playerScore > compScore)
-        currResult.textContent = "YOU WIN!";
+        final.textContent = "YOU WIN!";
 
     else if (compScore > playerScore)
-        currResult.textContent = "YOU LOSE";
+        final.textContent = "YOU LOSE";
 
     else if (playerScore == compScore)
-        currResult.textContent = "TIE GAME"; 
+        final.textContent = "TIE GAME"; 
 
-    resultContainer.appendChild(currResult);
+    finalResult.appendChild(final);
 }
