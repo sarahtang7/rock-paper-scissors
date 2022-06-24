@@ -1,6 +1,23 @@
-function toTitleCase (word) {
-    return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
-}
+const rockButton = document.querySelector('#rockButton');
+const paperButton = document.querySelector('#paperButton');
+const sciButton = document.querySelector('#sciButton');
+
+let result = '';
+let playerScore = 0;
+let compScore = 0;
+let gamesPlayed = 0;
+
+rockButton.addEventListener('click', () => {
+    playRound("Rock", computerPlay());
+});
+
+paperButton.addEventListener('click', () => {
+    playRound("Paper", computerPlay());
+});
+
+sciButton.addEventListener('click', () => {
+    playRound("Scissors", computerPlay());
+});
 
 function computerPlay () {
     let choices = ["Rock", "Paper", "Scissors"];
@@ -8,49 +25,43 @@ function computerPlay () {
 }
 
 function playRound (player, comp) {
-    if ((toTitleCase(player) == "Rock" && comp == "Scissors") || 
-        (toTitleCase(player) == "Scissors" && comp == "Paper") ||
-        (toTitleCase(player) == "Paper" && comp == "Rock")) 
-        return "You win! " + toTitleCase(player) + " beats " + comp;
+    if ((player == "Rock" && comp == "Scissors") || 
+        (player == "Scissors" && comp == "Paper") ||
+        (player == "Paper" && comp == "Rock")) {
+            console.log("You win! " + player + " beats " + comp);
+            changeScore("player");
+        }
 
-    else if ((comp == "Rock" && toTitleCase(player) == "Scissors") || 
-            (comp == "Scissors" && toTitleCase(player) == "Paper") ||
-            (comp == "Paper" && toTitleCase(player) == "Rock")) {
-                return "You lose. " + comp + " beats " + toTitleCase(player);
-            }
+    else if ((comp == "Rock" && player == "Scissors") || 
+            (comp == "Scissors" && player == "Paper") ||
+            (comp == "Paper" && player == "Rock")) {
+            console.log("You lose. " + comp + " beats " + player);
+            changeScore("comp");
+        }
 
-    else if (toTitleCase(player) == comp) {
-        return "It's a tie! Play again";
+    else if (player == comp) {
+        console.log("It's a tie! Play again");
     }
 }
 
-function game () {
-    let playerScore = 0;
-    let compScore = 0;
+function changeScore(whoWon) {
+    gamesPlayed++;
+    if (whoWon == "player")
+        playerScore++;
+    else
+        compScore++;
 
-    for (let i=1; i<6; i++) {
-        let player = prompt("Enter rock/paper/scissors: ");
-        let result = playRound(player, computerPlay());
-        console.log(result);
+    if (gamesPlayed == 5)
+        announceWinner();
+}
 
-        if (result.charAt(4) == "w")
-            playerScore++;
-
-        else if (result.charAt(4) == "l")
-            compScore++;
-
-        else
-            i--;
-    }
-
+function announceWinner() {
     if (playerScore > compScore)
-        return "YOU WIN!"
+        console.log("YOU WIN!");
 
     else if (compScore > playerScore)
-        return "YOU LOSE"
+        console.log("YOU LOSE");
 
     else if (playerScore == compScore)
-        return "TIE GAME"
+        console.log("TIE GAME"); 
 }
-
-console.log(game());
