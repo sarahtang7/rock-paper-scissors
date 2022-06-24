@@ -1,0 +1,6 @@
+#button-container, #result-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 100px;
+}

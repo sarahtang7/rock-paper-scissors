@@ -1,6 +1,10 @@
 const rockButton = document.querySelector('#rockButton');
 const paperButton = document.querySelector('#paperButton');
 const sciButton = document.querySelector('#sciButton');
+const resultContainer = document.querySelector('#result-container');
+
+const currResult = document.createElement('div');
+currResult.classList.add('currResult');
 
 let result = '';
 let playerScore = 0;
@@ -24,24 +28,28 @@ function computerPlay () {
     return choices[Math.floor(Math.random()*choices.length)];
 }
 
+
+
 function playRound (player, comp) {
     if ((player == "Rock" && comp == "Scissors") || 
         (player == "Scissors" && comp == "Paper") ||
         (player == "Paper" && comp == "Rock")) {
-            console.log("You win! " + player + " beats " + comp);
+            currResult.textContent = 'You win! ' + player + ' beats ' + comp;
             changeScore("player");
         }
 
     else if ((comp == "Rock" && player == "Scissors") || 
             (comp == "Scissors" && player == "Paper") ||
             (comp == "Paper" && player == "Rock")) {
-            console.log("You lose. " + comp + " beats " + player);
+            currResult.textContent = 'You lose. ' + comp + ' beats ' + player;
             changeScore("comp");
         }
 
     else if (player == comp) {
-        console.log("It's a tie! Play again");
+        currResult.textContent = "It's a tie! Play again";
     }
+
+    resultContainer.appendChild(currResult);
 }
 
 function changeScore(whoWon) {
@@ -57,11 +65,13 @@ function changeScore(whoWon) {
 
 function announceWinner() {
     if (playerScore > compScore)
-        console.log("YOU WIN!");
+        currResult.textContent = "YOU WIN!";
 
     else if (compScore > playerScore)
-        console.log("YOU LOSE");
+        currResult.textContent = "YOU LOSE";
 
     else if (playerScore == compScore)
-        console.log("TIE GAME"); 
+        currResult.textContent = "TIE GAME"; 
+
+    resultContainer.appendChild(currResult);
 }
